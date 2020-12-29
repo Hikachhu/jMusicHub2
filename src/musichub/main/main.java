@@ -103,10 +103,10 @@ class main{
           break;
 
         case 's':
-          FichierChansons.writeXML("Chanson.xml",ListeChanson);
-          FichierAlbums.writeXML("Albums.xml",ListeAlbum);
-          FichierLivreAudio.writeXML("LivreAudio.xml",ListeLivreAudio);
-          FichierPlaylist.writeXML("Playlist.xml",ListePlaylist);
+          FichierChansons.writeXML("files/Element.xml",ListeChanson);
+          FichierAlbums.writeXML("files/Albums.xml",ListeAlbum);
+          FichierLivreAudio.writeXML("files/Element.xml",ListeLivreAudio);
+          FichierPlaylist.writeXML("files/Playlist.xml",ListePlaylist);
 
           break;
 

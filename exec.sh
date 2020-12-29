@@ -1,1 +1,1 @@
-java -cp "./bin/" musichub/main/main
+java -cp ./bin/ musichub.main.main
