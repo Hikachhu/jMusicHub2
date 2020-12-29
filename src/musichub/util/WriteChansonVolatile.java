@@ -55,6 +55,15 @@ public class WriteChansonVolatile extends WriteVolatile{
 		Element root = document.createElement("Chansons");
 		document.appendChild(root);
 
+		LivreAudioVolatile  ListeLivreAudio = new LivreAudioVolatile();
+
+		WriteLivreAudioVolatile FichierLivreAudio = new WriteLivreAudioVolatile();
+		ListeLivreAudio  = FichierLivreAudio.readXML("files/Element.xml");
+
+		for (LivreAudio Ecrire : ListeLivreAudio.getEnsemble() ) {
+			root.appendChild(Ecrire.getElement(document));
+		}
+
 		for (Chanson Aecrire : EnsembleAecrire.getEnsemble() ) {
 			root.appendChild(Aecrire.getElement(document));
 		}

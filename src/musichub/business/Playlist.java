@@ -1,4 +1,4 @@
-package musichub.util;
+package musichub.business;
 import musichub.util.*;
 import musichub.business.*;
 
@@ -46,13 +46,12 @@ public class Playlist extends Stockage implements Listing{
   public String toString(){
     String s="Nom: "+getTitre()+" ID: "+getID()+"\n";
     for (Stockage Courant : Ensemble ) {
-      s+=(Courant+"\n");
+      s+="\t\t"+Courant+"\n";
     }
     return s;
   }
-  /**
-   * Permet d'ajouter une chanson dans la liste a partir d'entrée utilisateur
-   */
+
+  
   public void addUser(){
     Scanner clavier = new Scanner(System.in);
     System.out.println("Entrez le titre:");

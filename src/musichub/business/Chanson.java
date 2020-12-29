@@ -32,36 +32,72 @@ public class Chanson extends Stockage{
     this.Duree=Duree;
     this.genre=Genre.values()[genre];
   }
-
+  ////////////////////////////////////////////////////////////////////////////////////////
+  //Ensemble des Accesseurs directs
+  ////////////////////////////////////////////////////////////////////////////////////////
+  /**
+   * Accesseur d'Artiste
+   * @return Renvoi le String Artiste
+   */
   public String getArtiste(){
     return this.Artiste;
   }
 
+  /**
+   * Accesseur de Contenu
+   * @return String avec le contenu
+   */
   public String getContenu(){
     return this.Contenu;
   }
 
+  /**
+   * Accesseur du Genre
+   * @return Renvoi le nom du Genre
+   */
   public Genre getGenre(){
     return this.genre;
   }
 
+  /**
+   * Accesseur du numero du genre
+   * @return renvoi le numero du genre
+   */
   public int getGenreNumber(){
     return (this.genre).ordinal();
   }
 
+  /**
+   * Renvoi la valeur direct de Duree
+   * @return valeur de Duree
+   */
   public int getDureeSec(){
     return this.Duree;
   }
 
+  /**
+   * Convertit Duree en Minutes
+   * @return String contenant le formatage de Duree
+   */
   public String getDureeMin(){
     int min=(this.Duree)/60;
     int secondes=((this.Duree)%60);
     return String.valueOf(min)+"m"+String.valueOf(secondes)+"s";
   }
+
+  /**
+   * Affichage d'une chanson formaté
+   * @return une ligne avec toutes les informations sur la chanson
+   */
   public String toString(){
     return "Titre ="+getTitre()+" | Duree ="+getDureeMin()+" | ID= "+getID()+" | Artiste = "+Artiste+" | Contenu = "+ Contenu+ " | genre = "+ getGenre();
   }
 
+  /**
+   * Recuperation d'un Element crée à partir des informations de chansons
+   * @param  document Document où l'on écris
+   * @return          renvoi un element unique d'une chanson
+   */
   public Element getElement(Document document){
     Element client = document.createElement("Chanson");
 

@@ -1,4 +1,4 @@
-package musichub.util;
+package musichub.business;
 import musichub.util.*;
 import musichub.business.*;
 
@@ -21,8 +21,6 @@ import org.w3c.dom.*;
 import java.io.IOException;
 import java.io.File;
 
-import musichub.util.*;
-import musichub.business.*;
 
 public class Album extends Stockage{
   private String Artiste;
@@ -30,46 +28,88 @@ public class Album extends Stockage{
   protected int Duree;
   public ArrayList<Chanson> EnsembleChanson = new ArrayList<Chanson>();
 
+  /**
+   * Classe Album
+   * @param Titre      Titre de l'album
+   * @param Duree      Duree de l'album en secondes
+   * @param ID         ID de l'album
+   * @param Artiste    Nom de l'artiste
+   * @param DateSortie Date de sortie entre 0 et la date actuel
+   */
   public Album(String Titre,int Duree,int ID,String Artiste,int DateSortie){
     super(Titre,ID);
     this.Artiste=Artiste;
     this.DateSortie=DateSortie;
     this.Duree=Duree;
   }
+
+  /**
+   * Accesseur de Duree en seconde
+   * @return renvoi la Duree en brut
+   */
   public int getDureeSec(){
     return this.Duree;
   }
 
+  /**
+   * Obtient un String contenant la Duree en minute
+   * @return Un string contenant de format 'Minutes m Secondes s'
+   */
   public String getDureeMin(){
     int min=(this.Duree)/60;
     int secondes=((this.Duree)%60);
     return String.valueOf(min)+"m"+String.valueOf(secondes)+"s";
   }
 
+  /**
+   * Ajoute une chanson dans la liste des chansons
+   * @param stock Chanson à ajouter
+   */
   public void add(Chanson stock){
     EnsembleChanson.add(stock);
   }
 
+  /**
+   * Accesseur de l'ArrayList des chansons
+   * @return ArrayList contenant les chansons
+   */
   public ArrayList<Chanson> getEnsemble(){
     return EnsembleChanson;
   }
 
+  /**
+   * Accesseur de la date de sortie
+   * @return int contenant la date de sortie
+   */
   public int getDateSortie(){
     return this.DateSortie;
   }
 
+  /**
+   * Renvoi une chaine avec au début les informations sur l'album puis l'ensemble des chansons
+   * @return String avec toutes les informations sur un album
+   */
   public String toString(){
     String s="Album: "+getTitre()+" ID: "+getID()+" Artiste: "+Artiste+" DateSortie: "+DateSortie+" Duree: "+getDureeMin()+"\n";
     for (Chanson Courant : EnsembleChanson ) {
-      s+=(Courant+"\n");
+      s+=("\t\t"+Courant+"\n");
     }
     return s;
   }
 
+  /**
+   * Accesseur d'artiste
+   * @return String contenant le nom de l'artiste
+   */
   public String getArtiste(){
     return this.Artiste;
   }
 
+  /**
+   * Creation d'un element avec toutes les informations sur l'album avec les chansons contenus
+   * @param  document Document où l'element sera écris
+   * @return          Renvoi l'Element
+   */
   public Element getElement(Document document){
 
       Element AlbumElem = document.createElement("Album");
@@ -103,6 +143,10 @@ public class Album extends Stockage{
     return AlbumElem;
   }
 
+  /**
+   * Genere un ArrayList contenant les chansons triée selon les genres
+   * @return l'ArrayList avec les chansons
+   */
   public ArrayList<Chanson> Tri(){
    ArrayList<Chanson> Trier= new ArrayList<Chanson>(EnsembleChanson);
    Trier.sort((p1, p2) -> p1.getGenre().compareTo(p2.getGenre()));

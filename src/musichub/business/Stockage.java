@@ -18,22 +18,44 @@ import org.w3c.dom.*;
 import java.io.IOException;
 import java.io.File;
 
+
+/**
+ * Classe mere de toutes les classes de stockages
+ */
 public abstract class Stockage implements Serializable{
+
   protected String Titre;
   protected int ID;
-
+  /**
+   * Informations communes à Playlist,Album,Chanson et LivreAudio
+   * @param Titre [Titre ou nom du Stockage]
+   * @param ID    [ID unique pour se repérer]
+   */
   public Stockage(String Titre,int ID){
     this.Titre=Titre;
     this.ID=ID;
   }
-
+  /**
+   * Accesseur du Titre
+   * @return Renvoi Titre
+   */
   public String getTitre(){
     return this.Titre;
   }
 
+  /**
+   * Accesseur de l'ID
+   * @return Renvoi l'ID
+   */
   public int getID(){
     return this.ID;
   }
+
+  /**
+   * Genere et renvoi un Element contenant les informations de la structure
+   * @param  document Document dans lequel nous écrivons
+   * @return          Retour de l'Element
+   */
   public Element getElement(Document document){
     Element client = document.createElement("Stockage");
 

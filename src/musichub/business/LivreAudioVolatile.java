@@ -1,4 +1,4 @@
-package musichub.util;
+package musichub.business;
 import musichub.util.*;
 import musichub.business.*;
 
@@ -20,9 +20,9 @@ public class LivreAudioVolatile{
     clavier.nextLine();
     System.out.println("Entrez le Contenu:");
     String Contenu=clavier.nextLine();
-    System.out.println("Entrez la langue:");
+    System.out.println("Entrez la langue:(Veillez entrer le numero du genre voulu)"+Langues.allLangues());
     int langue=clavier.nextInt();
-    System.out.println("Entrez la categorie :");
+    System.out.println("Entrez la categorie :(Veillez entrer le numero du genre voulu)"+Categorie.allCategorie());
     int categorie=clavier.nextInt();
 
     LivreAudio nouveau =  new LivreAudio(Titre,Duree,Ensemble.size()+1,Auteur,Contenu,langue,categorie);
@@ -49,10 +49,14 @@ public class LivreAudioVolatile{
     return Ensemble;
   }
 
-  public ArrayList<LivreAudio> Trie(){
+  public String Trie(){
     ArrayList<LivreAudio> Trier= new ArrayList<LivreAudio>(Ensemble);
-    Ensemble.sort((p1, p2) -> (p1.getAuteur().compareTo(p2.getAuteur())));
-    return Trier;
+    Trier.sort((p1, p2) -> (p1.getAuteur().compareTo(p2.getAuteur())));
+    String s="";
+    for (LivreAudio livre : Trier) {
+      s+="\t"+livre+"\n";
+    }
+    return s;
   }
 
 }

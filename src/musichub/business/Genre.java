@@ -8,11 +8,13 @@ public enum Genre{
   private Genre(String Name){
     this.Name=Name;
   }
-  public String allGenre(){
+
+  public static String allGenre(){
     String s="";
     for (Genre a : Genre.values()) {
-      s+=a;
+      s+=a.ordinal()+" "+a+"\n";
     }
     return s;
   }
+
 }

@@ -9,6 +9,7 @@ class main{
 
   public static void main(String[] args) {
 
+    //Couleurs
     final String RESET = "\u001B[0m";
     final String BLACK = "\u001B[30m";
     final String RED = "\u001B[31m";
@@ -18,35 +19,29 @@ class main{
     final String PURPLE = "\u001B[35m";
     final String CYAN = "\u001B[36m";
     final String WHITE = "\u001B[37m";
-    char c='h';
 
+    char c='h';
     Scanner clavier = new Scanner(System.in);
     int ChansonNumber;
+
+    //Declaration des listes pour stocker les informations
     ChansonVolatile     ListeChanson    = new ChansonVolatile();
     LivreAudioVolatile  ListeLivreAudio = new LivreAudioVolatile();
     AlbumVolatile       ListeAlbum      = new AlbumVolatile();
     PlaylistVolatile    ListePlaylist   = new PlaylistVolatile();
 
-    WriteChansonVolatile    FichierChansons =   new WriteChansonVolatile();
-    ListeChanson  = FichierChansons.readXML("Chanson.xml");
-    WriteAlbumVolatile FichierAlbums = new WriteAlbumVolatile();
-    ListeAlbum  = FichierAlbums.readXML("Albums.xml");
+    //Lecture des informations
+    WriteChansonVolatile    FichierChansons   = new WriteChansonVolatile();
+    WriteAlbumVolatile      FichierAlbums     = new WriteAlbumVolatile();
     WriteLivreAudioVolatile FichierLivreAudio = new WriteLivreAudioVolatile();
-    ListeLivreAudio  = FichierLivreAudio.readXML("LivreAudio.xml");
-    WritePlaylistVolatile FichierPlaylist = new WritePlaylistVolatile();
-    ListePlaylist  = FichierPlaylist.readXML("Playlist.xml");
+    WritePlaylistVolatile   FichierPlaylist   = new WritePlaylistVolatile();
 
-    // LivreAudio lstock = new LivreAudio("Livre1",123,1,"Auteur1","Livre1.mp4",1,1);
-    // LivreAudio lstock1 = new LivreAudio("Livre1",123,2,"Auteur1","Livre1.mp4",1,1);
-    // LivreAudio lstock2 = new LivreAudio("Livre1",123,3,"Auteur1","Livre1.mp4",1,1);
-    // LivreAudio lstock3 = new LivreAudio("Livre1",123,4,"Auteur1","Livre1.mp4",1,1);
-    // ListeLivreAudio.add(lstock);
-    // ListeLivreAudio.add(lstock1);
-    // ListeLivreAudio.add(lstock2);
-    // ListeLivreAudio.add(lstock3);
+    ListeChanson      = FichierChansons.readXML("files/Element.xml");
+    ListeAlbum        = FichierAlbums.readXML("files/Albums.xml");
+    ListeLivreAudio   = FichierLivreAudio.readXML("files/Element.xml");
+    ListePlaylist     = FichierPlaylist.readXML("files/Playlist.xml");
 
-    // Album astock = new Album("Album1",134,1,"Createur d'album",1989);
-    // ListeAlbum.add(astock);
+    //Boucle principale pour le menu
     do{
       switch (c) {
         case 'd':
@@ -67,20 +62,30 @@ class main{
           break;
 
         case 'c':
+          //Ajout d'une musique dans la list des chansons disponibles
           ListeChanson.addUser();
           break;
 
         case 'a':
+          //Ajout d'un album dans la liste des album dispo
           ListeAlbum.addUser();
           break;
 
         case '+':
+          int AlbumNumber;
           System.out.println("Liste des albums et leurs contenus:\n " +ListeAlbum);
           System.out.println("Listes des chansons disponibles: \n"    +ListeChanson);
-          System.out.println("Selectionnez l'album où ajouter des musiques");
-          int AlbumNumber=clavier.nextInt();
-          System.out.println("Selectionnez un id à ajouter");
-          ChansonNumber=clavier.nextInt();
+
+          do {
+            System.out.println("Selectionnez l'album où ajouter des musiques");
+            AlbumNumber=clavier.nextInt();
+          } while (!(AlbumNumber>=0 && AlbumNumber<ListeAlbum.getEnsemble().size()));
+
+          do {
+            System.out.println("Selectionnez un id à ajouter");
+            ChansonNumber=clavier.nextInt();
+          } while (!(ChansonNumber>=0 && ChansonNumber<ListeChanson.getEnsemble().size()));
+
           ListeAlbum.add(AlbumNumber,(ListeChanson.get(ChansonNumber)));
 
           break;

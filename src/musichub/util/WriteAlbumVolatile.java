@@ -20,7 +20,7 @@ import java.util.UUID;
 import musichub.util.*;
 import musichub.business.*;
 
-public class WriteAlbumVolatile extends WriteVolatile{
+public class WriteAlbumVolatile extends WriteVolatile implements Writing{
 
 	public AlbumVolatile readXML(String Fichier) {
 		AlbumVolatile nouvelle = new AlbumVolatile();
@@ -45,7 +45,6 @@ public class WriteAlbumVolatile extends WriteVolatile{
 
 							Element ListeChanson1 =(Element) (currentElement.getElementsByTagName("ListeChanson").item(0));
 							NodeList ListeChanson =(NodeList) (ListeChanson1.getChildNodes());
-							//Jusqua la ca fonctionne
 
 							for (int j = 0; j<ListeChanson.getLength(); j++) {
 								if (ListeChanson.item(j).getNodeType() == Node.ELEMENT_NODE)   {

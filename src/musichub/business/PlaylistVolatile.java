@@ -1,4 +1,4 @@
-package musichub.util;
+package musichub.business;
 import musichub.util.*;
 import musichub.business.*;
 
@@ -81,10 +81,14 @@ public class PlaylistVolatile {
     Ensemble.remove(Number-1);
   }
 
-  public ArrayList<Playlist> Trie(){
+  public String Trie(){
     ArrayList<Playlist> Trier= new ArrayList<Playlist>(Ensemble);
     Trier.sort((p1, p2) -> p1.getTitre().compareTo(p2.getTitre()));
-    return Trier;
+    String s="";
+    for (Playlist playlist : Trier) {
+      s+="\t"+playlist+"\n";
+    }
+    return s;
   }
 
 }
